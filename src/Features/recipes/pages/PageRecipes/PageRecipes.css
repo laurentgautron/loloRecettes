@@ -1,0 +1,36 @@
+.meals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    list-style: none;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.meals-list li {
+  display: flex;
+  min-width: 0;
+}
+
+.meals-list > p {
+    grid-column: 1 / -1;
+    padding: 40px 0;
+    text-align: center;
+    color: var(--muted);
+}
+
+main {
+    padding: 0 150px;
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        padding: 0;
+    }
+
+    .meals-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        padding: 0 12px;
+    }
+}

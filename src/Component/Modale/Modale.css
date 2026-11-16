@@ -1,0 +1,38 @@
+.modale-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(32, 22, 14, 0.65);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modale-content {
+  position: relative;
+  background-color: #FFFDF9;
+  padding: 30px;
+  border-radius: 16px;
+  min-width: 300px;
+  min-height: 150px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modale-content > button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modale-content > button:hover {
+  background: var(--primary-dark);
+}
