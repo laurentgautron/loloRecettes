@@ -14,7 +14,7 @@ function Meal({ ...meal }) {
             <img src={meal.strMealThumb} alt={meal.strMeal} onClick={()=>navigate(`/detail/${meal.idMeal}`)}/>
             <div className="title-action">
                 <h3>{meal.strMeal}</h3>
-                <button type='button' onClick={open} className='bi bi-card-text'></button>
+                <button type='button' onClick={open} className='bi bi-calendar-check'></button>
             </div>
             {value && <Modale meal={meal} onClose={close} /> }
         </div>
