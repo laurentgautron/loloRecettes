@@ -19,9 +19,22 @@ export async function getMealsByName(name) {
 }
 
 export async function getMealById(id) {
-    console.log("Identifiant: ", id);
     const response = await fetch(`${MEALDB_URL}/lookup.php?i=${id}`);
     const results = await response.json();
-    console.log(results.meals[0]);
     return results.meals[0];
+}
+
+export async function getIngredients(meal) {
+    const mealDetail = await getMealById(meal.idMeal);
+    const ingredientsList = [];
+    for(let i=1; i < 20; i++) {
+        const ingredient = mealDetail[`strIngredient${i}`];
+        const quantity = mealDetail[`strMeasure${i}`]
+        if (ingredient && ingredient.trim() !== '') {
+            ingredientsList.push({name: ingredient, quantity: quantity});
+        }
+
+    }
+    console.log(ingredientsList);
+    return ingredientsList;
 }

@@ -19,7 +19,7 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-.modale-content > button {
+.modale-content .close {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -33,6 +33,6 @@
   transition: background 0.2s ease;
 }
 
-.modale-content > button:hover {
+.modale-content .close {
   background: var(--primary-dark);
 }
