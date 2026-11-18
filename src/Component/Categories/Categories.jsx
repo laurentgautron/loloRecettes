@@ -1,38 +1,25 @@
-import { useEffect, useState } from "react";
 import "./Categories.css";
-import { getMealsByCategory } from "../../utils";
+import Category from "../Category/Category";
+import { useQuery } from "@tanstack/react-query";
+import { categoriesQuery } from "../../queries/recipesQueries";
 
-function Categories({ categories, onCategorySelect }) {
-    const [selectedCategory, setSelectedCategory] = useState(null);
+function Categories({ selectedCategory, onCategorySelect }) {
+    const { data, isPending, isError } = useQuery(categoriesQuery());
+    const categories = data ?? [];
 
-    useEffect(() => {
-        if (categories && categories.length > 0) {
-            setSelectedCategory(categories[0].strCategory);
-            onCategorySelect(categories[0].strCategory);
-        }
-            
-    }, [categories]);
-
-    function handleClick(category) {
-        setSelectedCategory(category);
-        onCategorySelect(category);
-    }
+    if (isPending) return <p>Chargement des catégories…</p>;
+    if (isError) return <p>Impossible de charger les catégories</p>;
 
     return (
         <ul className="category-list">
-            {categories
+            {categories.length > 0
                 ? categories.map((category) => {
-                    return <li
+                    return <Category
                         key={category.idCategory}
-                        className={
-                            selectedCategory === category.strCategory
-                            ? "selected"
-                            : null
-                        }
-                        onClick={() => handleClick(category.strCategory)}
-                    >
-                        {category.strCategory}
-                    </li>
+                        category={category}
+                        isSelected={selectedCategory === category.strCategory}
+                        onSelect={onCategorySelect}
+                    />
                 })
                 : <p>Pas de catégories</p>
             }

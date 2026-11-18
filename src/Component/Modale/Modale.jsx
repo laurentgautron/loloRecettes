@@ -2,22 +2,17 @@ import './Modale.css';
 import { selectAddIngredient } from '../../Stores/readingIngredientsSlice';
 import { selectAddRecipe } from '../../Stores/readingListSlice';
 import { useReadingStore } from '../../Stores/useReadingStore';
-import { getIngredients } from '../../utils';
-import { useEffect, useState } from 'react';
+import { getIngredients } from '../../services/mealDBApi';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { ingredientsQuery } from '../../queries/recipesQueries';
 
 function Modale({ meal, onClose }) {
     const [date, setDate] = useState('');
-    const [ingredients, setIngredients] = useState([]);
     const addRecipes = useReadingStore(selectAddRecipe);
     const addIngredient = useReadingStore(selectAddIngredient);
-
-    useEffect(() => {
-        async function fetchIngredients() {
-            const ingredientInfos = await getIngredients(meal);
-            setIngredients(ingredientInfos);
-        }
-        fetchIngredients();
-    }, []);
+    const { data, isLoading, isError, error, refrech } = useQuery(ingredientsQuery(meal));
+    const ingredients = data?? [];
 
     function handleSubmit(ev) {
         ev.preventDefault();

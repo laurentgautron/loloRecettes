@@ -1,5 +1,4 @@
 import './Header.css';
-import Research from '../Research/Research';
 import { NavLink } from 'react-router';
 
 
@@ -14,7 +13,6 @@ function Header() {
                 </nav>
             </div>
             <h1>Recettes à Lolo</h1>
-            <Research />
         </div>
     )
 }

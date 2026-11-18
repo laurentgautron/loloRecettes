@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router";
 import "./DetailRecipe.css";
 import { useEffect, useState } from "react";
-import { getMealById } from "../../../../utils.js";
+import { getMealById } from "../../../../services/mealDBApi.js";
 
 function DetailRecipe() {
     const { idMeal } = useParams();

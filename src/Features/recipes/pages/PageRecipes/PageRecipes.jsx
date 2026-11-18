@@ -1,50 +1,42 @@
 import './PageRecipes.css';
 import Categories from '../../../../Component/Categories/Categories';
+import Research from '../../../../Component/Research/Research';
 import Meal from '../../Component/Meal/Meal';
-import { useState, useEffect, useContext } from 'react';
-import { getMealCategories, getMealsByCategory, getMealsByName } from '../../../../utils';
+import { useState, useContext } from 'react';
 import { AppContext } from '../../../../Context/AppContext';
+import { useQuery } from '@tanstack/react-query';
+import { nameRecipeQuery, recipesCategoryQuery } from '../../../../queries/recipesQueries';
 
 function PagesRecipes() {
     const { mealName } = useContext(AppContext);
-    const [categories, setCategories] = useState([]);
-    const [selectedMeals, setSelectedMeals] = useState([]);
-    const [category, setCategory] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [category, setCategory] = useState('Beef');
 
-    useEffect(() => {
-        setLoading(true);
-        !category ? getMealCategories()
-            .then(c => {
-                setCategories(c);
-                setCategory(c[0].strCategory);
-            })
-            .catch(error => console.log('Erreur [PageRecipes]: ', error))
-            .finally(() => setLoading(false))
-            : getMealsByCategory(category)
-                .then(m => setSelectedMeals(m))
-                .catch(error => console.log('Erreur [PageRecipes]: ', error))
-                .finally(() => setLoading(false));
-        if (mealName) {
-            getMealsByName(mealName)
-            .then(m => setSelectedMeals(m))
-            .catch(error => console.log('Erreur [PageRecipes]: ', error));
-        }
-    }, [category, mealName]);
+    const isNameResearch = Boolean(mealName?.trim());
+
+    const nameRecipesQuery = useQuery(nameRecipeQuery(mealName));
+    const categoryRecipesQuery = useQuery(recipesCategoryQuery(category));
+
+    const activeQuery = isNameResearch ? nameRecipesQuery : categoryRecipesQuery;
+    const selectedMeals = activeQuery.data ?? [];
+    const loading = activeQuery.isLoading || (!isNameResearch && !category);
 
     return (
         <main>
-            <Categories categories={categories} onCategorySelect={setCategory} />
+            <Research />
+            <Categories selectedCategory={category} onCategorySelect={setCategory} />
             <section>
                 <ul className='meals-list'>
                     {loading
                         ? <p>Chargement des recettes</p>
-                        : selectedMeals.map((meal) => {
-                            return <li key={meal.idMeal}><Meal {...meal} /></li>
-                    })}
+                        : selectedMeals.length === 0
+                            ? <p>Aucune recette trouvée</p>
+                            : selectedMeals.map((meal) => {
+                                return <li key={meal.idMeal}><Meal {...meal} /></li>
+                            })}
                 </ul>
             </section>
         </main>
-    )}
-    
+    )
+}
+
 export default PagesRecipes

@@ -1,4 +1,3 @@
-import { useSearchParams } from 'react-router';
 import './Research.css';
 import { useContext, useState } from 'react';
 import { AppContext } from '../../Context/AppContext';
@@ -13,14 +12,14 @@ function Research() {
     }
 
     return (
-        <div>
-            <input 
-            type="text"
-            name="recipe-name"
-            id="research"
-            placeholder='Rechercher par recette'
-            value={recipeName}
-            onChange={(ev) => handleChange(ev)}/>
+        <div className='research'>
+            <input
+                type="text"
+                name="recipe-name"
+                id="research"
+                placeholder='Rechercher par recette'
+                value={recipeName}
+                onChange={(ev) => handleChange(ev)} />
         </div>
     )
 }

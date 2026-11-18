@@ -12,6 +12,8 @@
   "dependencies": {
     "@fullcalendar/react": "^7.1.5",
     "@redux-devtools/extension": "^4.0.1",
+    "@tanstack/react-query": "^5.108.0",
+    "@tanstack/react-query-devtools": "^5.108.0",
     "bootstrap-icons": "^1.13.2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
