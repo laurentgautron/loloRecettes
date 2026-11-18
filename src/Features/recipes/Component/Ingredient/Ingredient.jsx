@@ -24,11 +24,11 @@ function Ingredient({ id, name, date, recipeName, quantity }) {
         <li className='ingredient'>
             <div className="ingredient-info">
                 <h3>{name}</h3>
-                <h6>Pour la recette: {recipeName}</h6>
+                <h5>Pour la recette: {recipeName}</h5>
                 {wantModify
                     ? <form onSubmit={handleSubmit}>
                         <div className="quantity">
-                            <label htmlFor="quantity">Quantité:</label>
+                            <label htmlFor="quantity">Quantité: </label>
                             <input type="text" name="quantity" id="quantity" value={ingredientInfos.quantity} onChange={handleChange} />
                         </div>
                         <div className="date">

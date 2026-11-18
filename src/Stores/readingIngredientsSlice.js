@@ -12,6 +12,9 @@ export const createReadingIngredientsSlice = ((set) => ({
     removeIngredient: (id) => set((state) => {
         return {ingredients: state.ingredients.filter(ingredient => ingredient.id !== id)}
     }),
+    removeIngredientWithMealID: (mealId) => set((state) => {
+        return {ingredients: state.ingredients.filter(ingredient => ingredient.mealId !== mealId)}
+    }),
     updateIngredient: (id, infos) => set((state) => {
         return {
             ingredients: state.ingredients.map((ingredient) => {
@@ -21,10 +24,21 @@ export const createReadingIngredientsSlice = ((set) => ({
                 return ingredient;
             })
         }
+    }),
+    changeDateWithMealID: (mealId, date) => set((state) => {
+        return {
+            ingredients: state.ingredients.map((ingredient) => {
+                if (ingredient.mealId === mealId) {
+                    return {...ingredient, date: date}
+                }
+            })
+        }
     })
 }));
 
 export const selectIngredients = (state) => state.ingredients
 export const selectAddIngredient = (state) => state.addIngredient;
 export const selectRemoveIngredient = (state) => state.removeIngredient;
-export const selectUpdateIngredient = state => state.updateIngredient
+export const selectUpdateIngredient = state => state.updateIngredient;
+export const selectChageDateWithMealID = (state) => state.changeDateWithMealID;
+export const selectRemoveIngredientWithMealID = (state) => state.removeIngredientWithMealID;

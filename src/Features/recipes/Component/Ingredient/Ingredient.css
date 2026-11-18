@@ -2,16 +2,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px red solid;
-    background-color: #fff;
+    background-color: #EFD9BF;
     border-radius: 5px;
     padding: 15px;
     width: 100%;
     max-width: 400px;
 }
 
-.ingredient h6 {
+.ingredient h5 {
     margin-bottom: 15px;
+    color: #8A7563;
+}
+
+.ingredient h3 {
+    color: #33261C;
+}
+
+.ingredient button {
+    margin-top: 15px;
+    background-color: #C4622D;
+    color: white;
+}
+
+.ingredient .quantity {
+    margin-bottom: 50px;
 }
 
 

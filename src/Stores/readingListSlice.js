@@ -16,9 +16,13 @@ export const createReadingRecipeSlice = (set) => ({
                 return {...recipe};
             })
         }
+    }),
+    removeRecipe: (id) => set((state) => {
+        return {recipes: state.recipes.filter(recipe => recipe.id !== id)}
     })
 });
 
 export const selectRecipes = (state) => state.recipes;
 export const selectAddRecipe = (state) => state.addRecipe;
-export const selectChangeRecipeDate = (state) => state.changeRecipeDate
+export const selectChangeRecipeDate = (state) => state.changeRecipeDate;
+export const selectRemoveRecipe = (state) => state.removeRecipe;
