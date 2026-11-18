@@ -29,8 +29,9 @@ export const createReadingIngredientsSlice = ((set) => ({
         return {
             ingredients: state.ingredients.map((ingredient) => {
                 if (ingredient.mealId === mealId) {
-                    return {...ingredient, date: date}
+                    return {...ingredient, date: date};
                 }
+                return ingredient;
             })
         }
     })

@@ -35,16 +35,16 @@ function Ingredient({ id, name, date, recipeName, quantity }) {
                             <label htmlFor="date">Date: </label>
                             <input type="date" name="date" id="date" value={ingredientInfos.date} onChange={handleChange} />
                         </div>
-                        <button type="submit">Enregistrer</button>
+                        <button type="submit" className="mod-save">Enregistrer</button>
                     </form>
                     : <>
                         <p>Quantité: {quantity}</p>
                         <p>Date: {date}</p>
-                        <button type="button" onClick={() => setWantModify(true)}>Modifier</button>
+                        <button type="button" className="mod-save" onClick={() => setWantModify(true)}>Modifier</button>
                     </>
                 }
             </div>
-            <button type="button" onClick={() => removeIngredient(id)}>Supprimer</button>
+            <button type="button" className="remove" onClick={() => removeIngredient(id)}>Supprimer</button>
         </li>
     )
 }

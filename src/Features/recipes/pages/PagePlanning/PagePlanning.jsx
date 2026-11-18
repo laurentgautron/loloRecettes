@@ -27,8 +27,8 @@ function PagePlanning() {
 
     function handleEventDrop(infos) {
         changeDate(infos.event.id, infos.event.startStr);
-        chageDateIngredientWithMealId(infos.event.id, infos.event.start.getTime());
-
+        chageDateIngredientWithMealId(infos.event.id, infos.event.startStr);
+        
     }
 
     function handleClick(infos) {

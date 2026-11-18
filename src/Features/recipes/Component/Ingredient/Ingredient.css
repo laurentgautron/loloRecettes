@@ -19,14 +19,38 @@
 }
 
 .ingredient button {
-    margin-top: 15px;
-    background-color: #C4622D;
-    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background .2s, color .2s, transform .2s;
+    margin-top: 10px;
+    margin-right: 8px;
 }
 
-.ingredient .quantity {
-    margin-bottom: 50px;
+.ingredient .mod-save {
+    background-color: #C4622D;
+    color: #FFF7EC;
 }
+
+.ingredient .mod-save:hover {
+    background-color: #A34E22;
+}
+
+.ingredient .remove {
+    background-color: transparent;
+    color: #A34E22;
+    border: 2px solid #A34E22;
+
+}
+
+.ingredient .remove:hover {
+    background-color: #A34E22;
+    color: #FFF7EC;
+}
+
 
 
 

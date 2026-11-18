@@ -35,6 +35,5 @@ export async function getIngredients(meal) {
         }
 
     }
-    console.log(ingredientsList);
     return ingredientsList;
 }
