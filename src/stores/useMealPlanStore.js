@@ -1,14 +1,14 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
-import { createReadingIngredientsSlice } from "./readingIngredientsSlice";
-import { createReadingRecipeSlice } from "./readingListSlice";
+import { createIngredientsSlice } from "./ingredientsSlice";
+import { createPlannedRecipesSlice } from "./plannedRecipesSlice";
 
-export const useReadingStore = create(
+export const useMealPlanStore = create(
     devtools(
         persist(
             (set) => ({
-                ...createReadingIngredientsSlice(set),
-                ...createReadingRecipeSlice(set)
+                ...createIngredientsSlice(set),
+                ...createPlannedRecipesSlice(set)
             }),
             {
                 name: "food-recipes",

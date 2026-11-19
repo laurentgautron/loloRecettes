@@ -1,0 +1,66 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(32, 22, 14, 0.65);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #FFFDF9;
+  padding: 30px;
+  border-radius: 16px;
+  min-width: 300px;
+  min-height: 150px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.add-courses {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(196, 98, 45, 0.3);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-courses:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(196, 98, 45, 0.35);
+}
+
+.add-courses:active {
+  transform: translateY(0);
+}
+
+.add-courses:focus-visible {
+  outline: 2px solid var(--primary-dark);
+  outline-offset: 2px;
+}

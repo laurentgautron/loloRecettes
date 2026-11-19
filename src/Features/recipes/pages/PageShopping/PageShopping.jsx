@@ -1,12 +1,12 @@
 import './PageShopping.css';
-import { selectIngredients } from '../../../../Stores/readingIngredientsSlice';
-import { selectRecipes } from '../../../../Stores/readingListSlice';
-import { useReadingStore } from '../../../../Stores/useReadingStore';
-import Ingredient from '../../Component/Ingredient/Ingredient';
+import { selectIngredients } from '../../../../stores/ingredientsSlice';
+import { selectRecipes } from '../../../../stores/plannedRecipesSlice';
+import { useMealPlanStore } from '../../../../stores/useMealPlanStore';
+import Ingredient from '../../components/Ingredient/Ingredient';
 
 function PageShopping() {
-    const ingredients = useReadingStore(selectIngredients);
-    const recipes = useReadingStore(selectRecipes);
+    const ingredients = useMealPlanStore(selectIngredients);
+    const recipes = useMealPlanStore(selectRecipes);
 
     const sortedIngredients = [...ingredients].sort((a, b) => {
         return Date.parse(b.date) - Date.parse(a.date);

@@ -1,4 +1,4 @@
-import { getIngredients, getMealCategories, getMealsByCategory, getMealsByName } from "../services/mealDBApi";
+import { getMealCategories, getMealIngredients, getMealsByCategory, getMealsByName } from "../services/mealDbApi";
 
 export function categoriesQuery() {
     return {
@@ -7,14 +7,14 @@ export function categoriesQuery() {
     };
 }
 
-export function ingredientsQuery(meal) {
+export function mealIngredientsQuery(mealId) {
     return {
-        queryKey: ['ingredient'],
-        queryFn: () => getIngredients(meal)
+        queryKey: ['ingredients', mealId],
+        queryFn: () => getMealIngredients(mealId)
     }
 };
 
-export function nameRecipeQuery(name) {
+export function recipesByNameQuery(name) {
     return {
         queryKey: ['recipes', 'name', name],
         queryFn: () => getMealsByName(name),
@@ -22,9 +22,9 @@ export function nameRecipeQuery(name) {
     }
 };
 
-export function recipesCategoryQuery(category) {
+export function recipesByCategoryQuery(category) {
     return {
-        queryKey: ['category', 'recipes', category],
+        queryKey: ['recipes', 'category', category],
         queryFn: () => getMealsByCategory(category),
         enabled: Boolean(category)
     }

@@ -1,22 +1,20 @@
-import './Research.css';
-import { useContext, useState } from 'react';
-import { AppContext } from '../../Context/AppContext';
+import './SearchBar.css';
+import { useState } from 'react';
 
-function Research() {
+function SearchBar({ onSearch }) {
     const [recipeName, setRecipeName] = useState('');
-    const { setMealName } = useContext(AppContext);
 
     function handleChange(ev) {
         setRecipeName(ev.target.value);
-        setMealName(ev.target.value);
+        onSearch(ev.target.value);
     }
 
     return (
-        <div className='research'>
+        <div className='search-bar'>
             <input
                 type="text"
                 name="recipe-name"
-                id="research"
+                id="search"
                 placeholder='Rechercher par recette'
                 value={recipeName}
                 onChange={(ev) => handleChange(ev)} />
@@ -24,4 +22,4 @@ function Research() {
     )
 }
 
-export default Research
+export default SearchBar;

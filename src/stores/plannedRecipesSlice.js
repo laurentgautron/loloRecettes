@@ -1,4 +1,4 @@
-export const createReadingRecipeSlice = (set) => ({
+export const createPlannedRecipesSlice = (set) => ({
     recipes: [],
     addRecipe: (recipe) => set((state) => {
         return { recipes: [...state.recipes, {
@@ -13,7 +13,7 @@ export const createReadingRecipeSlice = (set) => ({
                 if (id === recipe.id) {
                     return {...recipe, date: date};
                 }
-                return {...recipe};
+                return recipe;
             })
         }
     }),

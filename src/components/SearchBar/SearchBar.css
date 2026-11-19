@@ -1,9 +1,9 @@
-.research {
+.search-bar {
     width: min(440px, 90%);
     margin: 20px auto 24px;
 }
 
-#research {
+#search {
     width: 100%;
     padding: 12px 20px;
     border: 1px solid rgba(255, 255, 255, 0.5);
@@ -16,11 +16,11 @@
     transition: box-shadow 0.2s ease;
 }
 
-#research::placeholder {
+#search::placeholder {
     color: var(--muted);
 }
 
-#research:focus {
+#search:focus {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
     background: #fff;

@@ -1,4 +1,4 @@
-export const createReadingIngredientsSlice = ((set) => ({
+export const createIngredientsSlice = ((set) => ({
     ingredients: [],
     addIngredient: (ingredient) => set((state) => {
         return { ingredients: [...state.ingredients, {
@@ -12,20 +12,20 @@ export const createReadingIngredientsSlice = ((set) => ({
     removeIngredient: (id) => set((state) => {
         return {ingredients: state.ingredients.filter(ingredient => ingredient.id !== id)}
     }),
-    removeIngredientWithMealID: (mealId) => set((state) => {
+    removeIngredientsByMealId: (mealId) => set((state) => {
         return {ingredients: state.ingredients.filter(ingredient => ingredient.mealId !== mealId)}
     }),
-    updateIngredient: (id, infos) => set((state) => {
+    updateIngredient: (id, changes) => set((state) => {
         return {
             ingredients: state.ingredients.map((ingredient) => {
                 if (ingredient.id === id) {
-                    return {...ingredient, date: infos.date, quantity: infos.quantity};
+                    return {...ingredient, date: changes.date, quantity: changes.quantity};
                 };
                 return ingredient;
             })
         }
     }),
-    changeDateWithMealID: (mealId, date) => set((state) => {
+    changeIngredientDatesByMealId: (mealId, date) => set((state) => {
         return {
             ingredients: state.ingredients.map((ingredient) => {
                 if (ingredient.mealId === mealId) {
@@ -37,9 +37,9 @@ export const createReadingIngredientsSlice = ((set) => ({
     })
 }));
 
-export const selectIngredients = (state) => state.ingredients
+export const selectIngredients = (state) => state.ingredients;
 export const selectAddIngredient = (state) => state.addIngredient;
 export const selectRemoveIngredient = (state) => state.removeIngredient;
-export const selectUpdateIngredient = state => state.updateIngredient;
-export const selectChageDateWithMealID = (state) => state.changeDateWithMealID;
-export const selectRemoveIngredientWithMealID = (state) => state.removeIngredientWithMealID;
+export const selectUpdateIngredient = (state) => state.updateIngredient;
+export const selectChangeIngredientDatesByMealId = (state) => state.changeIngredientDatesByMealId;
+export const selectRemoveIngredientsByMealId = (state) => state.removeIngredientsByMealId;

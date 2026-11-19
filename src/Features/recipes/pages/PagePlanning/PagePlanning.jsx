@@ -6,16 +6,16 @@ import interactionPlugin from "@fullcalendar/react/interaction";
 import '@fullcalendar/react/skeleton.css'; // ALWAYS NEED SKELETON
 import '@fullcalendar/react/themes/monarch/theme.css'; // YOUR THEME
 import '@fullcalendar/react/themes/monarch/palettes/purple.css'; // YOUR THEME'S PALETTE
-import { useReadingStore } from '../../../../Stores/useReadingStore';
-import { selectChangeRecipeDate, selectRecipes, selectRemoveRecipe } from '../../../../Stores/readingListSlice';
-import { selectChageDateWithMealID, selectRemoveIngredientWithMealID, selectUpdateIngredient } from '../../../../Stores/readingIngredientsSlice';
+import { useMealPlanStore } from '../../../../stores/useMealPlanStore';
+import { selectChangeRecipeDate, selectRecipes, selectRemoveRecipe } from '../../../../stores/plannedRecipesSlice';
+import { selectChangeIngredientDatesByMealId, selectRemoveIngredientsByMealId } from '../../../../stores/ingredientsSlice';
 
 function PagePlanning() {
-    const recipes = useReadingStore(selectRecipes);
-    const changeDate = useReadingStore(selectChangeRecipeDate);
-    const chageDateIngredientWithMealId = useReadingStore(selectChageDateWithMealID);
-    const removeRecipe = useReadingStore(selectRemoveRecipe);
-    const removeIngredientWithMealId = useReadingStore(selectRemoveIngredientWithMealID);
+    const recipes = useMealPlanStore(selectRecipes);
+    const changeDate = useMealPlanStore(selectChangeRecipeDate);
+    const changeIngredientDatesByMealId = useMealPlanStore(selectChangeIngredientDatesByMealId);
+    const removeRecipe = useMealPlanStore(selectRemoveRecipe);
+    const removeIngredientsByMealId = useMealPlanStore(selectRemoveIngredientsByMealId);
 
     const events = recipes.map((recipe) => {
         return {
@@ -25,16 +25,16 @@ function PagePlanning() {
         }
     })
 
-    function handleEventDrop(infos) {
-        changeDate(infos.event.id, infos.event.startStr);
-        chageDateIngredientWithMealId(infos.event.id, infos.event.startStr);
+    function handleEventDrop(info) {
+        changeDate(info.event.id, info.event.startStr);
+        changeIngredientDatesByMealId(info.event.id, info.event.startStr);
         
     }
 
-    function handleClick(infos) {
-        removeIngredientWithMealId(infos.event.id);
-        removeRecipe(infos.event.id);
-        infos.event.remove();
+    function handleClick(info) {
+        removeIngredientsByMealId(info.event.id);
+        removeRecipe(info.event.id);
+        info.event.remove();
     }
 
     return (

@@ -1,37 +1,36 @@
 import './PageRecipes.css';
-import Categories from '../../../../Component/Categories/Categories';
-import Research from '../../../../Component/Research/Research';
-import Meal from '../../Component/Meal/Meal';
-import { useState, useContext } from 'react';
-import { AppContext } from '../../../../Context/AppContext';
+import Categories from '../../../../components/Categories/Categories';
+import SearchBar from '../../../../components/SearchBar/SearchBar';
+import RecipeCard from '../../components/RecipeCard/RecipeCard';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { nameRecipeQuery, recipesCategoryQuery } from '../../../../queries/recipesQueries';
+import { recipesByNameQuery, recipesByCategoryQuery } from '../../../../queries/recipesQueries';
 
-function PagesRecipes() {
-    const { mealName } = useContext(AppContext);
+function PageRecipes() {
+    const [recipeName, setRecipeName] = useState(null);
     const [category, setCategory] = useState('Beef');
 
-    const isNameResearch = Boolean(mealName?.trim());
+    const isNameSearch = Boolean(recipeName?.trim());
 
-    const nameRecipesQuery = useQuery(nameRecipeQuery(mealName));
-    const categoryRecipesQuery = useQuery(recipesCategoryQuery(category));
+    const nameRecipesQuery = useQuery(recipesByNameQuery(recipeName));
+    const categoryRecipesQuery = useQuery(recipesByCategoryQuery(category));
 
-    const activeQuery = isNameResearch ? nameRecipesQuery : categoryRecipesQuery;
-    const selectedMeals = activeQuery.data ?? [];
-    const loading = activeQuery.isLoading || (!isNameResearch && !category);
+    const activeQuery = isNameSearch ? nameRecipesQuery : categoryRecipesQuery;
+    const selectedRecipes = activeQuery.data ?? [];
+    const loading = activeQuery.isLoading || (!isNameSearch && !category);
 
     return (
         <main>
-            <Research />
+            <SearchBar onSearch={setRecipeName}/>
             <Categories selectedCategory={category} onCategorySelect={setCategory} />
             <section>
-                <ul className='meals-list'>
+                <ul className='recipes-list'>
                     {loading
                         ? <p>Chargement des recettes</p>
-                        : selectedMeals.length === 0
+                        : selectedRecipes.length === 0
                             ? <p>Aucune recette trouvée</p>
-                            : selectedMeals.map((meal) => {
-                                return <li key={meal.idMeal}><Meal {...meal} /></li>
+                            : selectedRecipes.map((recipe) => {
+                                return <li key={recipe.idMeal}><RecipeCard {...recipe} /></li>
                             })}
                 </ul>
             </section>
@@ -39,4 +38,4 @@ function PagesRecipes() {
     )
 }
 
-export default PagesRecipes
+export default PageRecipes;

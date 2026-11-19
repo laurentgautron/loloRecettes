@@ -11,7 +11,7 @@ function useToggle(initialValue=false) {
         setValue(false);
     }
 
-    return {value, open, close};
+    return {isOpen: value, open, close};
 }
 
 export default useToggle;
