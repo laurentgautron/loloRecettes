@@ -14,7 +14,12 @@ function RecipeCard(recipe) {
             <img src={recipe.strMealThumb} alt={recipe.strMeal} onClick={()=>navigate(`/detail/${recipe.idMeal}`)}/>
             <div className="title-action">
                 <h3>{recipe.strMeal}</h3>
-                <button type='button' onClick={open} className='bi bi-calendar-check'></button>
+                <button 
+                    type='button'
+                    onClick={open}
+                    className='bi bi-calendar-check'
+                    aria-label="Ajouter au planning">
+                </button>
             </div>
             {isOpen && <Modal recipe={recipe} onClose={close} /> }
         </div>
