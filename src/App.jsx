@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router";
-import PageRecipes from "./features/recipes/pages/PageRecipes/PageRecipes";
-import PageShopping from "./features/recipes/pages/PageShopping/PageShopping";
-import PagePlanning from "./features/recipes/pages/PagePlanning/PagePlanning";
-import PageDetailRecipe from "./features/recipes/pages/PageDetailRecipe/PageDetailRecipe";
+import PageRecipes from "./Features/recipes/pages/PageRecipes/PageRecipes";
+import PageShopping from "./Features/recipes/pages/PageShopping/PageShopping";
+import PagePlanning from "./Features/recipes/pages/PagePlanning/PagePlanning";
+import PageDetailRecipe from "./Features/recipes/pages/PageDetailRecipe/PageDetailRecipe";
 import Header from "./components/Header/Header";
 
 

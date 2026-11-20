@@ -1,9 +1,10 @@
 import { useNavigate, useParams } from "react-router";
 import "./PageDetailRecipe.css";
 import { useEffect, useState } from "react";
-import { getMealById } from "../../../../services/mealDbApi";
+import { getMealById } from "../../../../services/mealDBApi";
 import Modal from "../../../../components/Modal/Modal";
 import useToggle from "../../../../hooks/useToggle";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function PageDetailRecipe() {
     const { idMeal } = useParams();
@@ -27,8 +28,12 @@ function PageDetailRecipe() {
                 <h2>{recipe.strMeal}</h2>
                 <p>{recipe.strInstructions}</p>
                 <div className="btnAction">
-                    <button type="button" onClick={() => navigate('/')}>Retour</button>
-                    <button type="button" onClick={open}>Ajouter au planning</button>
+                    <button type="button" onClick={() => navigate('/')}>
+                        <i className="bi bi-arrow-left" aria-hidden="true"></i> Retour
+                    </button>
+                    <button type="button" onClick={open}>
+                        <i className="bi bi-calendar-plus" aria-hidden="true"></i> Ajouter au planning
+                    </button>
                 </div>
                 {isOpen && recipe && <Modal recipe={recipe} onClose={close} />}
             </div>

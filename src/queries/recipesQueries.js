@@ -1,4 +1,4 @@
-import { getMealCategories, getMealIngredients, getMealsByCategory, getMealsByName } from "../services/mealDbApi";
+import { getMealCategories, getMealIngredients, getMealsByCategory, getMealsByName } from "../services/mealDBApi";
 
 export function categoriesQuery() {
     return {
